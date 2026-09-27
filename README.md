@@ -1,6 +1,6 @@
 # static
 
-Генерирует сайт по Markdow в ввиде статьи
+Генерирует сайт по Markdow в виде статьи
 
 [@zoused/static@1.0.0](https://www.npmjs.com/package/@zoused/static).
 

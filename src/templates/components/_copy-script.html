@@ -1,0 +1,37 @@
+
+    <script type="application/json" id="article-markdown">{{source}}</script>
+    <script>
+      const copyButton = document.querySelector('.article-copy');
+      const sourceNode = document.getElementById('article-markdown');
+      if (copyButton && sourceNode) {
+        let timer = 0;
+        copyButton.addEventListener('click', async () => {
+          window.clearTimeout(timer);
+          const source = JSON.parse(sourceNode.textContent);
+          try {
+            if (navigator.clipboard && window.isSecureContext) {
+              await navigator.clipboard.writeText(source);
+            } else {
+              const area = document.createElement('textarea');
+              area.value = source;
+              area.setAttribute('readonly', '');
+              area.style.position = 'fixed';
+              area.style.left = '-9999px';
+              document.body.append(area);
+              area.select();
+              const copied = document.execCommand('copy');
+              area.remove();
+              if (!copied) throw new Error('copy failed');
+            }
+            copyButton.classList.add('is-copied');
+            copyButton.setAttribute('aria-label', 'Скопировано');
+          } catch {
+            copyButton.classList.remove('is-copied');
+          }
+          timer = window.setTimeout(() => {
+            copyButton.classList.remove('is-copied');
+            copyButton.setAttribute('aria-label', 'Копировать Markdown');
+          }, 2000);
+        });
+      }
+    </script>

@@ -1,0 +1,30 @@
+@import "./_base.css";
+
+:root {
+  color-scheme: dark;
+  --bg: #202020;
+  --fg: #d6d6d6;
+  --fg-muted: #858585;
+  --muted: #afafaf;
+  --link: #e2b56a;
+  --border: #303338;
+  --line: #303338;
+  --link-line: #e2b56a80;
+  --table: #222222;
+  --table-head: #252525;
+  --table-hover: #2a2a2a;
+  --code: #222222;
+  --code-bar: #252525;
+  --code-inline: #2a2a2a;
+  --code-fg: #fcfcfa;
+  --code-muted: #939293;
+  --code-deletion: #ff6188;
+  --code-addition: #a9dc76;
+  --code-builtin: #a9dc76;
+  --code-type: #78dce8;
+  --code-number: #ab9df2;
+  --code-constant: #ab9df2;
+  --code-comment: #727072;
+  --code-string: #ffd866;
+  --code-keyword: #ff6188;
+}

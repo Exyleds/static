@@ -1,33 +1,27 @@
 # static
 
-Генератор статических страниц из Markdown. На выходе обычный HTML, CSS и скрипт подсветки кода. Сервер для публикации не нужен.
+Генерирует сайт по Markdow в ввиде статьи
+
+[@zoused/static@1.0.0](https://www.npmjs.com/package/@zoused/static).
 
 ## Установка
 
 ```bash
-npm install
+npm install -g @zoused/static@1.0.0
 ```
 
-Команды ниже запускаются из корня проекта:
-
-```bash
-node bin/cli.js build
-node bin/cli.js serve
-```
-
-После `npm link` те же команды доступны как `static build` и `static serve`.
 
 ## Сборка
 
 ```bash
-node bin/cli.js build -i content -o dist
+static build -i content -o dist
 ```
 
-На вход можно отдать файл или папку. По умолчанию читается `content`, результат пишется в `dist`.
+```bash
+npx @zoused/static@1.0.0 build -i content -o dist
+```
 
-Если на вход отдана папка и в ней больше одного `.md`, собирается `index.html` со ссылками на статьи. Один файл или папка с одной статьёй такой список не создают.
-
-Рядом с Markdown из папки копируются картинки и другие статические файлы: png, jpg, gif, webp, svg, css, js, pdf, ico.
+На выходе выдает файл HTML в папке output
 
 ### Флаги `build`
 
@@ -45,7 +39,7 @@ node bin/cli.js build -i content -o dist
 Пример:
 
 ```bash
-node bin/cli.js build -i content -o dist --clean --theme light --show-date --show-save
+static build -i content -o dist --clean --theme light --show-date --show-save
 ```
 
 Неизвестное имя темы останавливает сборку и печатает список доступных тем.
@@ -53,7 +47,7 @@ node bin/cli.js build -i content -o dist --clean --theme light --show-date --sho
 ## Просмотр
 
 ```bash
-node bin/cli.js serve -d dist -p 3000
+static serve -d dist -p 3000
 ```
 
 Сервер отдаёт `http://localhost:3000`. Для папки открывается `index.html`.
@@ -63,47 +57,9 @@ node bin/cli.js serve -d dist -p 3000
 | `-d, --dir <dir>` | `dist` | Какую папку раздавать |
 | `-p, --port <number>` | `3000` | Порт |
 
-## Статья
-
-Страница строится из одного Markdown-файла. Поддерживается GitHub Flavored Markdown: заголовки, списки, задачи, таблицы, цитаты, ссылки, картинки, код.
-
-Фрагмент кода становится карточкой с названием языка и кнопкой копирования. Подсветка зависит от языка в ограждении.
-
-### Название
-
-Название берётся из front matter или из первого заголовка. Этот заголовок показывается один раз и из текста убирается. Если названия нет, блок заголовка на страницу не попадает. Имя файла названием не становится.
-
-```markdown
----
-title: "Заголовок: с двоеточием"
-description: "Короткое описание для meta description."
-date: 2026-09-27
----
-
-# Заголовок: с двоеточием
-
-Текст статьи.
-```
-
-Значение с двоеточием во front matter нужно брать в кавычки.
-
-Дату можно указать и без front matter, первой строкой файла:
-
-```markdown
-date: 2026-09-27
-
-# Заголовок
-```
-
-С `--show-date` рядом с названием ставится эта дата. Если её нет, ставится дата сборки.
-
-### Подпись
-
-Внизу по центру страницы написано «Создано с помощью Static v1». Слово Static ведёт на https://github.com/Exyleds/static. Флаг `--hide-watermark` убирает подпись.
-
 ## Темы
 
 - `dark` — тёмная страница.
-- `light` — белая страница. Блоки кода остаются тёмными, чтобы подсветка не терялась.
+- `light` — тёплая бумажная страница.
 
 Цвета темы лежат в `src/themes/dark.css` и `src/themes/light.css`. Общая вёрстка — в `src/themes/_base.css`.

@@ -65,7 +65,7 @@ let cancelSleep = null;
 
 export function beginIntro() {
   const name = 'static';
-  const version = 'v1';
+  const version = 'v1.0.1';
   const rule = '─'.repeat(name.length + version.length + 2);
   let phase = 'name';
   let stopRequested = false;

@@ -24,7 +24,7 @@ const program = new Command();
 program
   .name('static')
   .description('Генератор статического сайта из Markdown')
-  .version('1.0.0');
+  .version('1.0.1');
 
 program
   .command('build')

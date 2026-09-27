@@ -10,7 +10,7 @@ const assetsDir = path.join(path.dirname(fileURLToPath(import.meta.url)), 'asset
 const { version } = JSON.parse(
   fs.readFileSync(new URL('../package.json', import.meta.url), 'utf8'),
 );
-const watermarkVersion = `v${String(version).split('.')[0] || '1'}`;
+const watermarkVersion = `v${String(version).split('.')[0] || '1.0.1'}`;
 
 const MONTHS = [
   'января',

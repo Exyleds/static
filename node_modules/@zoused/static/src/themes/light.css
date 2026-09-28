@@ -1,0 +1,30 @@
+@import "./_base.css";
+
+:root {
+  color-scheme: light;
+  --bg: #ebe6df;
+  --fg: #3f3b36;
+  --fg-muted: #9a928a;
+  --muted: #6a645c;
+  --link: #8a6a45;
+  --border: #ddd6cc;
+  --line: #e0d9d0;
+  --link-line: #8a6a4566;
+  --table: #f1ece6;
+  --table-head: #e7e1d9;
+  --table-hover: #e3ddd4;
+  --code: #e7e1d8;
+  --code-bar: #e0d9cf;
+  --code-inline: #e4ddd4;
+  --code-fg: #514c46;
+  --code-muted: #9a928a;
+  --code-deletion: #9a5a62;
+  --code-addition: #6a7d58;
+  --code-builtin: #6a7d58;
+  --code-type: #5f7a78;
+  --code-number: #7a6a86;
+  --code-constant: #7a6a86;
+  --code-comment: #9a928a;
+  --code-string: #8a7048;
+  --code-keyword: #9a5a62;
+}

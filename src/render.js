@@ -32,6 +32,19 @@ async function styleMarkup(css, multiFile, currentRel) {
   });
 }
 
+function inlineScript(source) {
+  return String(source).replace(/<\/(script)/gi, '<\\/$1');
+}
+
+async function scriptMarkup(js, multiFile, currentRel) {
+  if (!multiFile) {
+    return renderTemplate('_script-inline', { js: inlineScript(js) });
+  }
+  return renderTemplate('_script-link', {
+    src: escapeHtml(relativeHref(currentRel, 'index.js')),
+  });
+}
+
 function dateAttribute(date) {
   return date?.iso ? ` datetime="${escapeHtml(date.iso)}"` : '';
 }
@@ -75,6 +88,7 @@ export async function renderPage({
   body,
   currentRel,
   css,
+  js,
   multiFile,
   date,
   save,
@@ -88,6 +102,7 @@ export async function renderPage({
       ? await renderTemplate('_meta-description', { description: escapeHtml(description) })
       : '',
     style: await styleMarkup(css, multiFile, currentRel),
+    script: await scriptMarkup(js, multiFile, currentRel),
     watermark: watermark
       ? await renderTemplate('_watermark', { version: escapeHtml(watermark) })
       : '',
@@ -96,7 +111,6 @@ export async function renderPage({
         source: JSON.stringify(save.source).replaceAll('<', '\\u003c'),
       })
       : '',
-    js: escapeHtml(relativeHref(currentRel, 'index.js')),
     body,
   });
   return html.endsWith('\n') ? html : `${html}\n`;

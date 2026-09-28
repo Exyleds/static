@@ -1,0 +1,1693 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>static</title>
+    <style>
+
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,500;1,400&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+
+@import url('https://fonts.googleapis.com/css2?family=Cascadia+Code:ital,wght@0,200..700;1,200..700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Rubik', sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+}
+
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.article {
+    max-width: 800px;
+    margin: 12px auto;
+    padding: 20px;
+}
+
+.article-title {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 16px;
+}
+
+.article-header {
+  margin-bottom: 8px;
+}
+
+.article-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 12px;
+}
+
+.article-heading .article-title {
+  margin-bottom: 0;
+}
+
+.article-date,
+.article-index__date {
+  color: var(--fg-muted);
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.article-copy {
+  display: inline-flex;
+  align-items: center;
+  align-self: center;
+  margin: 0 0 0 auto;
+  padding: 4px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--fg-muted);
+  cursor: pointer;
+}
+
+.article-copy:hover,
+.article-copy:focus-visible {
+  background: var(--table-hover);
+  color: var(--fg);
+}
+
+.article-copy__icon {
+  width: 16px;
+  height: 16px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.article-copy__icon--check {
+  display: none;
+}
+
+.article-copy.is-copied {
+  color: var(--fg);
+}
+
+.article-copy.is-copied .article-copy__icon--copy {
+  display: none;
+}
+
+.article-copy.is-copied .article-copy__icon--check {
+  display: block;
+}
+
+.article-index {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.article-index__item {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.article-index__item:last-child {
+  border-bottom: 0;
+}
+
+.article-index__item a {
+  color: var(--fg);
+  font-size: 1rem;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.article-index__item a:hover,
+.article-index__item a:focus-visible {
+  color: var(--link);
+}
+
+.watermark {
+  width: 100%;
+  margin-top: auto;
+  padding: 20px;
+  color: var(--fg-muted);
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.watermark a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--link-line);
+  text-underline-offset: 2px;
+}
+
+.watermark a:hover,
+.watermark a:focus-visible {
+  text-decoration-color: var(--link);
+}
+
+.article-body {
+    font-size: 1rem;
+}
+
+.article-body h1 {
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.article-body h2 {
+  font-size: 1.6rem;
+}
+
+.article-body h2,
+.article-body h3,
+.article-body h4,
+.article-body h5,
+.article-body h6 {
+  margin: 20px 0 12px;
+  color: var(--fg);
+  line-height: 1.25;
+}
+
+.article-body > :first-child {
+  margin-top: 0;
+}
+
+.article-body h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.article-body h4 {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.article-body h5 {
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.article-body h6 {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.article-body p {
+  margin: 0 0 8px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.article-body strong {
+  color: var(--fg);
+  font-weight: 600;
+}
+
+.article-body em {
+  font-style: italic;
+}
+
+.article-body del {
+  color: var(--fg-muted);
+  text-decoration: line-through;
+}
+
+.article-body a {
+  color: var(--link);
+  text-decoration: underline;
+  text-decoration-color: var(--link-line);
+  text-underline-offset: 2px;
+}
+
+.article-body a:hover,
+.article-body a:focus-visible {
+  text-decoration-color: var(--link);
+}
+
+.article-body img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 8px 0;
+  border-radius: 8px;
+}
+
+.article-body hr {
+  height: 0;
+  margin: 8px 0;
+  border: 0;
+  border-bottom: 2px solid var(--line);
+}
+
+.article-body sup,
+.article-body sub {
+  font-size: 1rem;
+  line-height: 0;
+}
+
+.article-body ul:has(> li > input[type="checkbox"]) {
+  margin-left: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.article-body li:has(> input[type="checkbox"]) {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.article-body input[type="checkbox"] {
+  appearance: none;
+  flex: none;
+  width: 14px;
+  height: 14px;
+  margin: 3px 0 0;
+  border: 1px solid var(--line);
+  border-radius: 4px;
+  background: var(--table);
+  display: grid;
+  place-content: center;
+}
+
+.article-body input[type="checkbox"]:checked {
+  border-color: var(--link);
+  background: var(--link);
+}
+
+.article-body input[type="checkbox"]:checked::after {
+  content: "";
+  width: 7px;
+  height: 4px;
+  border-left: 1.5px solid var(--bg);
+  border-bottom: 1.5px solid var(--bg);
+  transform: rotate(-45deg) translateY(-1px);
+}
+
+.article-body input[type="checkbox"]:disabled {
+  opacity: 1;
+}
+
+.article-body table {
+  width: 100%;
+  margin: 8px 0 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--table);
+  overflow: hidden;
+}
+
+.article-body th,
+.article-body td {
+  padding: 4px 12px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: middle;
+}
+
+.article-body tr:last-child td {
+  border-bottom: 0;
+}
+
+.article-body th {
+  background: var(--table-head);
+  color: var(--muted);
+  font-weight: 500;
+}
+
+.article-body td {
+  color: var(--fg);
+}
+
+.article-body tbody tr:hover td {
+  background: var(--table-hover);
+}
+
+.article-body thead tr:first-child th:first-child {
+  border-top-left-radius: 8px;
+}
+
+.article-body thead tr:first-child th:last-child {
+  border-top-right-radius: 8px;
+}
+
+blockquote {
+  font-size: 1rem;
+  margin: 12px 0;
+  padding: 4px 12px;
+  border-left: 2px solid var(--muted);
+  line-height: 1.4;
+}
+
+blockquote h1 {
+  font-size: 1.2rem;
+}
+
+blockquote h2 {
+  font-size: 1rem;
+}
+
+blockquote h3 {
+  font-size: 0.8rem;
+}
+
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  margin-bottom: 8px;
+}
+
+ul li {
+  color: var(--muted);
+}
+ul li::marker {
+  color: var(--fg-muted);
+}
+
+ol {
+  list-style-type: decimal;
+  margin-left: 20px;
+  margin-bottom: 8px;
+}
+
+ol li {
+  color: var(--muted);
+}
+ol li::marker {
+  color: var(--fg-muted);
+}
+
+code {
+  font-size: 0.9rem;
+  font-family: 'Cascadia Code', ui-monospace, monospace;
+  background: var(--code-inline);
+  color: var(--fg);
+  padding: 1px 4px;
+  border-radius: 6px;
+}
+
+.code-block {
+  margin: 8px 0;
+  background: var(--code);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.code-block__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 8px;
+  background: var(--code-bar);
+  border-bottom: 1px solid var(--border);
+  font-family: 'Rubik', sans-serif;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--code-fg);
+}
+
+.code-block__lang {
+  user-select: none;
+}
+
+.code-block__copy {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin: 0;
+  padding: 2px 6px;
+  border: 0;
+  border-radius: 4px;
+  background: transparent;
+  color: var(--code-muted);
+  font: inherit;
+  cursor: pointer;
+}
+
+.code-block__copy:hover,
+.code-block__copy:focus-visible {
+  background: var(--code);
+  color: var(--fg);
+}
+
+.code-block__copy.is-copied {
+  color: var(--code-fg);
+}
+
+.code-block__icon {
+  width: 14px;
+  height: 14px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.code-block__icon--check {
+  display: none;
+}
+
+.code-block__copy.is-copied .code-block__icon--copy {
+  display: none;
+}
+
+.code-block__copy.is-copied .code-block__icon--check {
+  display: block;
+}
+
+.code-block__pre {
+  margin: 0;
+  overflow: auto;
+  background: transparent;
+}
+
+.code-block code {
+  display: block;
+  padding: 8px 12px;
+  background: transparent;
+  border-radius: 0;
+  font-family: 'Cascadia Code', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 0.9rem;
+  line-height: 1.625;
+  color: var(--code-fg);
+  white-space: pre;
+}
+
+.tok-keyword,
+.tok-deletion { color: var(--code-deletion); }
+.tok-string { color: var(--code-string); }
+.tok-function,
+.tok-addition { color: var(--code-addition); }
+.tok-builtin,
+.tok-type { color: var(--code-type); }
+.tok-number,
+.tok-constant { color: var(--code-constant); }
+.tok-comment { color: var(--code-comment); font-style: italic; }
+
+@media print {
+  .article-copy {
+    display: none !important;
+  }
+
+  body {
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+}
+
+
+
+:root {
+  color-scheme: dark;
+  --bg: #202020;
+  --fg: #d6d6d6;
+  --fg-muted: #858585;
+  --muted: #afafaf;
+  --link: #e2b56a;
+  --border: #303338;
+  --line: #303338;
+  --link-line: #e2b56a80;
+  --table: #222222;
+  --table-head: #252525;
+  --table-hover: #2a2a2a;
+  --code: #222222;
+  --code-bar: #252525;
+  --code-inline: #2a2a2a;
+  --code-fg: #fcfcfa;
+  --code-muted: #939293;
+  --code-deletion: #ff6188;
+  --code-addition: #a9dc76;
+  --code-builtin: #a9dc76;
+  --code-type: #78dce8;
+  --code-number: #ab9df2;
+  --code-constant: #ab9df2;
+  --code-comment: #727072;
+  --code-string: #ffd866;
+  --code-keyword: #ff6188;
+}
+</style>
+  </head>
+  <body>
+    <div class="page">
+      <div class="page-main">
+        <div class="article">
+      <header class="article-header">
+        <div class="article-heading">
+      <h2 class="article-title">static</h2></div></header>
+          <div class="article-body">
+            <p>Генерирует сайт по Markdow в виде статьи</p>
+<p><a href="https://www.npmjs.com/package/@zoused/static">@zoused/static@1.0.0</a>.</p>
+<h2>Установка</h2>
+<figure class="code-block">
+  <figcaption class="code-block__bar">
+    <span class="code-block__lang">bash</span>
+    <button type="button" class="code-block__copy" data-label="Copy" data-done="Copied" aria-label="Copy code">
+      <svg class="code-block__icon code-block__icon--copy" viewBox="0 0 24 24" aria-hidden="true">
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+      </svg>
+      <svg class="code-block__icon code-block__icon--check" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+      <span class="code-block__copy-label">Copy</span>
+    </button>
+  </figcaption>
+  <pre class="code-block__pre"><code class="language-bash">npm install -g @zoused/static@1.0.0</code></pre>
+</figure>
+<h2>Сборка</h2>
+<figure class="code-block">
+  <figcaption class="code-block__bar">
+    <span class="code-block__lang">bash</span>
+    <button type="button" class="code-block__copy" data-label="Copy" data-done="Copied" aria-label="Copy code">
+      <svg class="code-block__icon code-block__icon--copy" viewBox="0 0 24 24" aria-hidden="true">
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+      </svg>
+      <svg class="code-block__icon code-block__icon--check" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+      <span class="code-block__copy-label">Copy</span>
+    </button>
+  </figcaption>
+  <pre class="code-block__pre"><code class="language-bash">static build -i content -o dist</code></pre>
+</figure>
+<figure class="code-block">
+  <figcaption class="code-block__bar">
+    <span class="code-block__lang">bash</span>
+    <button type="button" class="code-block__copy" data-label="Copy" data-done="Copied" aria-label="Copy code">
+      <svg class="code-block__icon code-block__icon--copy" viewBox="0 0 24 24" aria-hidden="true">
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+      </svg>
+      <svg class="code-block__icon code-block__icon--check" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+      <span class="code-block__copy-label">Copy</span>
+    </button>
+  </figcaption>
+  <pre class="code-block__pre"><code class="language-bash">npx @zoused/static@1.0.0 build -i content -o dist</code></pre>
+</figure>
+<p>На выходе выдает файл HTML в папке output</p>
+<h3>Флаги <code>build</code></h3>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>По умолчанию</th>
+<th>Что делает</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-i, --input &lt;path&gt;</code></td>
+<td><code>content</code></td>
+<td>Markdown-файл или папка</td>
+</tr>
+<tr>
+<td><code>-o, --output &lt;dir&gt;</code></td>
+<td><code>dist</code></td>
+<td>Папка результата</td>
+</tr>
+<tr>
+<td><code>--clean</code></td>
+<td>выкл.</td>
+<td>Очистить папку результата перед сборкой</td>
+</tr>
+<tr>
+<td><code>--theme &lt;theme&gt;</code></td>
+<td><code>dark</code></td>
+<td>Тема: <code>dark</code> или <code>light</code></td>
+</tr>
+<tr>
+<td><code>--multi-file</code></td>
+<td>выкл.</td>
+<td>Вынести стили в <code>style.css</code>, скрипт в <code>index.js</code></td>
+</tr>
+<tr>
+<td><code>--show-date</code></td>
+<td>выкл.</td>
+<td>Показать дату публикации</td>
+</tr>
+<tr>
+<td><code>--show-save</code></td>
+<td>выкл.</td>
+<td>Кнопка копировать исходный Markdown</td>
+</tr>
+<tr>
+<td><code>--hide-watermark</code></td>
+<td>выкл.</td>
+<td>Убрать водяной знак</td>
+</tr>
+</tbody></table>
+<p>Пример:</p>
+<figure class="code-block">
+  <figcaption class="code-block__bar">
+    <span class="code-block__lang">bash</span>
+    <button type="button" class="code-block__copy" data-label="Copy" data-done="Copied" aria-label="Copy code">
+      <svg class="code-block__icon code-block__icon--copy" viewBox="0 0 24 24" aria-hidden="true">
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+      </svg>
+      <svg class="code-block__icon code-block__icon--check" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+      <span class="code-block__copy-label">Copy</span>
+    </button>
+  </figcaption>
+  <pre class="code-block__pre"><code class="language-bash">static build -i content -o dist --clean --theme light --show-date --show-save</code></pre>
+</figure>
+<p>Неизвестное имя темы останавливает сборку и печатает список доступных тем.</p>
+<h2>Просмотр</h2>
+<figure class="code-block">
+  <figcaption class="code-block__bar">
+    <span class="code-block__lang">bash</span>
+    <button type="button" class="code-block__copy" data-label="Copy" data-done="Copied" aria-label="Copy code">
+      <svg class="code-block__icon code-block__icon--copy" viewBox="0 0 24 24" aria-hidden="true">
+        <rect width="14" height="14" x="8" y="8" rx="2" ry="2"></rect>
+        <path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"></path>
+      </svg>
+      <svg class="code-block__icon code-block__icon--check" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 6 9 17l-5-5"></path>
+      </svg>
+      <span class="code-block__copy-label">Copy</span>
+    </button>
+  </figcaption>
+  <pre class="code-block__pre"><code class="language-bash">static serve -d dist -p 3000</code></pre>
+</figure>
+<p>Сервер отдаёт <code>http://localhost:3000</code>. Для папки открывается <code>index.html</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Флаг</th>
+<th>По умолчанию</th>
+<th>Что делает</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>-d, --dir &lt;dir&gt;</code></td>
+<td><code>dist</code></td>
+<td>Какую папку раздавать</td>
+</tr>
+<tr>
+<td><code>-p, --port &lt;number&gt;</code></td>
+<td><code>3000</code></td>
+<td>Порт</td>
+</tr>
+</tbody></table>
+<h2>Темы</h2>
+<ul>
+<li><code>dark</code> — тёмная страница.</li>
+<li><code>light</code> — тёплая бумажная страница.</li>
+</ul>
+<p>Цвета темы лежат в <code>src/themes/dark.css</code> и <code>src/themes/light.css</code>. Общая вёрстка — в <code>src/themes/_base.css</code>.</p>
+<h2>Оформление</h2>
+<h3>Статья</h3>
+<p><img src="https://i.postimg.cc/3xsqqN42/Snimok-ekrana-2026-09-28-v-23-16-27.png" alt="Статья"></p>
+<h3>Блок кода</h3>
+<p><img src="https://i.postimg.cc/HkyZbmZ7/Snimok-ekrana-2026-09-28-v-23-17-49.png" alt="Блок кода"></p>
+<h3>Таблица</h3>
+<p><img src="https://i.postimg.cc/LsSTf1gW/Snimok-ekrana-2026-09-28-v-23-19-03.png" alt="Таблица"></p>
+
+          </div>
+        </div>
+      </div>
+    <p class="watermark">Создано с помощью <a href="https://github.com/Exyleds/static">Static</a> v1</p>
+    </div>
+    <script>
+const words = (text) => new Set(text.trim().split(/\s+/));
+
+const ALIASES = {
+  js: 'javascript',
+  jsx: 'javascript',
+  mjs: 'javascript',
+  cjs: 'javascript',
+  node: 'javascript',
+  ts: 'typescript',
+  tsx: 'typescript',
+  py: 'python',
+  pyw: 'python',
+  rb: 'ruby',
+  rs: 'rust',
+  kt: 'kotlin',
+  kts: 'kotlin',
+  cs: 'csharp',
+  'c#': 'csharp',
+  'c++': 'cpp',
+  cc: 'cpp',
+  cxx: 'cpp',
+  hpp: 'cpp',
+  hh: 'cpp',
+  hxx: 'cpp',
+  h: 'c',
+  sh: 'bash',
+  zsh: 'bash',
+  shell: 'bash',
+  console: 'bash',
+  yml: 'yaml',
+  md: 'plaintext',
+  markdown: 'plaintext',
+  text: 'plaintext',
+  txt: 'plaintext',
+  plain: 'plaintext',
+  plaintext: 'plaintext',
+  dockerfile: 'docker',
+  makefile: 'make',
+  mk: 'make',
+  ps1: 'powershell',
+  pwsh: 'powershell',
+  xml: 'html',
+  svg: 'html',
+  vue: 'html',
+  golang: 'go',
+  objc: 'cpp',
+  'objective-c': 'cpp',
+  objectivec: 'cpp',
+};
+
+const C_LIKE = {
+  line: ['//'],
+  block: [['/*', '*/']],
+  quotes: ['"', "'"],
+  charLiterals: true,
+};
+
+const C_TYPES = words(`
+  auto bool char char8_t char16_t char32_t double float int long short signed
+  unsigned void wchar_t size_t ptrdiff_t int8_t int16_t int32_t int64_t uint8_t
+  uint16_t uint32_t uint64_t intptr_t uintptr_t
+`);
+
+const C_KEYWORDS = words(`
+  break case const continue default do else enum extern for goto if inline
+  register restrict return sizeof static struct switch typedef union volatile
+  while asm
+`);
+
+function define(options) {
+  return {
+    mode: 'code',
+    line: [],
+    block: [],
+    quotes: ['"', "'"],
+    triple: false,
+    backtick: false,
+    charLiterals: false,
+    stringPrefixes: false,
+    hash: false,
+    preprocessor: false,
+    flags: false,
+    macros: false,
+    ignoreCase: false,
+    keywords: new Set(),
+    types: new Set(),
+    constants: new Set(),
+    builtins: new Set(),
+    nextType: words('class struct enum interface trait type namespace'),
+    nextFunction: words('def fn func function fun sub'),
+    ...options,
+  };
+}
+
+const LANGUAGES = {
+  plaintext: define({ mode: 'plain', quotes: [] }),
+  generic: define({
+    ...C_LIKE,
+    hash: true,
+  }),
+  javascript: define({
+    line: ['//'],
+    block: [['/*', '*/']],
+    quotes: ['"', "'"],
+    backtick: true,
+    keywords: words(`
+      async await break case catch class const continue debugger default delete
+      do else export extends finally for from function if import in instanceof
+      let new of return static super switch this throw try typeof var void while
+      yield
+    `),
+    constants: words('false null true undefined NaN Infinity'),
+    builtins: words(`
+      Array Boolean Date Error JSON Map Math Number Object Promise RegExp Set
+      String Symbol console document window fetch setTimeout setInterval
+    `),
+    types: words('any unknown never void string number boolean object'),
+  }),
+  typescript: define({
+    line: ['//'],
+    block: [['/*', '*/']],
+    quotes: ['"', "'"],
+    backtick: true,
+    keywords: words(`
+      async await break case catch class const continue debugger default delete
+      do else export extends finally for from function if import in instanceof
+      let new of return static super switch this throw try typeof var void while
+      yield interface type enum implements public private protected readonly
+      abstract declare namespace module as is keyof typeof infer satisfies
+      override accessor
+    `),
+    constants: words('false null true undefined NaN Infinity'),
+    builtins: words(`
+      Array Boolean Date Error JSON Map Math Number Object Promise RegExp Set
+      String Symbol console document window Partial Required Pick Omit Record
+      Exclude Extract NonNullable Parameters ReturnType
+    `),
+    types: words('any unknown never void string number boolean object bigint symbol'),
+  }),
+  python: define({
+    hash: true,
+    quotes: ['"', "'"],
+    triple: true,
+    stringPrefixes: true,
+    keywords: words(`
+      and as assert async await break class continue def del elif else except
+      finally for from global if import in is lambda nonlocal not or pass raise
+      return try while with yield match case
+    `),
+    constants: words('False None True'),
+    builtins: words(`
+      print len range int str float list dict set tuple open super type
+      isinstance enumerate zip map filter input abs sum min max sorted reversed
+      any all object Exception ValueError TypeError KeyError self cls
+    `),
+  }),
+  c: define({
+    ...C_LIKE,
+    preprocessor: true,
+    keywords: C_KEYWORDS,
+    types: C_TYPES,
+    constants: words('NULL true false'),
+    builtins: words('printf scanf malloc free memcpy memset sizeof NULL'),
+  }),
+  cpp: define({
+    ...C_LIKE,
+    preprocessor: true,
+    keywords: words(`
+      ${[...C_KEYWORDS].join(' ')}
+      alignas alignof and and_eq bitand bitor catch class co_await co_return
+      co_yield compl concept const_cast consteval constexpr constinit decltype
+      delete dynamic_cast explicit export friend mutable namespace new noexcept
+      not not_eq operator or or_eq private protected public reinterpret_cast
+      requires static_assert static_cast template this thread_local throw
+      try typeid typename using virtual xor xor_eq override final module import
+    `),
+    types: words(`
+      ${[...C_TYPES].join(' ')}
+      string wstring string_view vector map set array unique_ptr shared_ptr
+      weak_ptr optional variant tuple pair deque list unordered_map unordered_set
+    `),
+    constants: words('true false nullptr NULL'),
+    builtins: words('std cout cin cerr clog endl printf scanf malloc free'),
+  }),
+  java: define({
+    ...C_LIKE,
+    keywords: words(`
+      abstract assert break case catch class const continue default do else enum
+      extends final finally for goto if implements import instanceof interface
+      native new package private protected public return static strictfp super
+      switch synchronized this throw throws transient try volatile while var yield
+      record sealed permits
+    `),
+    types: words(`
+      boolean byte char double float int long short void String Integer Long
+      Double Float Boolean Character Byte Short List Map Set Optional
+    `),
+    constants: words('true false null'),
+    builtins: words('System out println'),
+  }),
+  csharp: define({
+    ...C_LIKE,
+    keywords: words(`
+      abstract as base break case catch checked class const continue default
+      delegate do else enum event explicit extern finally fixed for foreach goto
+      if implicit in interface internal is lock namespace new null operator out
+      override params private protected public readonly ref return sealed sizeof
+      stackalloc static struct switch this throw try typeof unchecked unsafe
+      using virtual volatile while add alias ascending async await by descending
+      equals from get global group into join let nameof orderby partial remove
+      select set value var when where yield record init required
+    `),
+    types: words(`
+      bool byte char decimal double float int long object sbyte short string
+      uint ulong ushort void dynamic List Dictionary
+    `),
+    constants: words('true false null'),
+    builtins: words('Console WriteLine Write'),
+  }),
+  go: define({
+    line: ['//'],
+    block: [['/*', '*/']],
+    quotes: ['"'],
+    backtick: true,
+    charLiterals: true,
+    keywords: words(`
+      break case chan const continue default defer else fallthrough for func go
+      goto if import interface map package range return select struct switch type
+      var
+    `),
+    types: words(`
+      bool byte rune string int int8 int16 int32 int64 uint uint8 uint16 uint32
+      uint64 uintptr float32 float64 complex64 complex128 error any comparable
+    `),
+    constants: words('true false nil iota'),
+    builtins: words('append cap close complex copy delete imag len make new panic print println real recover'),
+  }),
+  rust: define({
+    line: ['//'],
+    block: [['/*', '*/']],
+    quotes: ['"'],
+    charLiterals: true,
+    macros: true,
+    keywords: words(`
+      as async await break const continue crate dyn else enum extern false fn for
+      if impl in let loop match mod move mut pub ref return self Self static
+      struct super trait true type unsafe use where while abstract become box do
+      final macro override priv typeof unsized virtual yield try gen
+    `),
+    types: words(`
+      i8 i16 i32 i64 i128 isize u8 u16 u32 u64 u128 usize f32 f64 bool char str
+      String Vec Option Result Box Rc Arc HashMap HashSet
+    `),
+    constants: words('Some None Ok Err true false'),
+    builtins: words('println print eprintln format vec panic assert todo unimplemented'),
+  }),
+  ruby: define({
+    hash: true,
+    quotes: ['"', "'"],
+    keywords: words(`
+      alias and begin break case class def defined? do else elsif end ensure
+      false for if in module next nil not or redo rescue retry return self super
+      then true undef unless until when while yield
+    `),
+    constants: words('true false nil'),
+    builtins: words('puts print p require include attr_reader attr_writer attr_accessor'),
+  }),
+  php: define({
+    line: ['//', '#'],
+    block: [['/*', '*/']],
+    quotes: ['"', "'"],
+    keywords: words(`
+      abstract and array as break callable case catch class clone const continue
+      declare default die do echo else elseif empty enddeclare endfor endforeach
+      endif endswitch endwhile eval exit extends final finally fn for foreach
+      function global goto if implements include include_once instanceof insteadof
+      interface isset list match namespace new or print private protected public
+      require require_once return static switch throw trait try unset use var
+      while xor yield from
+    `),
+    constants: words('true false null TRUE FALSE NULL'),
+    builtins: words('echo print isset empty array_map array_filter count strlen'),
+  }),
+  swift: define({
+    ...C_LIKE,
+    keywords: words(`
+      associatedtype break case catch class continue default defer deinit do else
+      enum extension fallthrough false fileprivate for func guard if import in
+      init inout internal is let nil open operator private protocol public repeat
+      rethrows return self static struct subscript super switch throw throws true
+      try typealias var where while async await some any
+    `),
+    types: words('Int String Double Float Bool Array Dictionary Set Optional Void Any'),
+    constants: words('true false nil'),
+    builtins: words('print'),
+  }),
+  kotlin: define({
+    ...C_LIKE,
+    keywords: words(`
+      abstract actual annotation as break by catch class companion const
+      constructor continue crossinline data delegate do dynamic else enum
+      expect external false final finally for fun get if import in infix init
+      inline inner interface internal is lateinit noinline null object open
+      operator out override package private protected public reified return
+      sealed set super suspend tailrec this throw true try typealias typeof val
+      var vararg when where while
+    `),
+    types: words('Int Long Short Byte Double Float Boolean Char String Unit Any Nothing List Map Set'),
+    constants: words('true false null'),
+    builtins: words('println print'),
+  }),
+  bash: define({
+    hash: true,
+    ignoreCase: true,
+    quotes: ['"', "'"],
+    flags: true,
+    keywords: words(`
+      if then else elif fi for while until do done case esac function return
+      exit local export readonly declare typeset unset shift source alias unalias
+      break continue in select time coproc
+    `),
+    builtins: words('echo cd pwd ls cat grep sed awk mkdir rm cp mv git npm yarn pnpm node python pip curl wget sudo'),
+    constants: words('true false'),
+  }),
+  powershell: define({
+    hash: true,
+    ignoreCase: true,
+    quotes: ['"', "'"],
+    flags: true,
+    keywords: words(`
+      begin break catch class continue data define do dynamicparam else elseif
+      end exit filter finally for foreach from function if in param process
+      return switch throw trap try until while
+    `),
+    builtins: words('Write-Host Write-Output Get-ChildItem Get-Content Set-Content'),
+    constants: words('$true $false $null'),
+  }),
+  sql: define({
+    ignoreCase: true,
+    line: ['--'],
+    block: [['/*', '*/']],
+    quotes: ["'", '"'],
+    keywords: words(`
+      select from where insert into update set delete create table drop alter
+      index view join left right inner outer full on as and or not null is in
+      like between exists group by order having limit offset union all distinct
+      values primary key foreign references constraint default begin commit
+      rollback transaction case when then else end asc desc with recursive
+    `),
+    types: words('int integer bigint smallint boolean bool text varchar char date time timestamp numeric decimal float double serial json jsonb'),
+    constants: words('true false null'),
+    builtins: words('count sum avg min max coalesce cast'),
+  }),
+  lua: define({
+    line: ['--'],
+    block: [['--[[', ']]'], ['--[=[', ']=]']],
+    quotes: ['"', "'"],
+    keywords: words(`
+      and break do else elseif end false for function goto if in local nil not
+      or repeat return then true until while
+    `),
+    constants: words('true false nil'),
+    builtins: words('print pairs ipairs type tostring tonumber require module'),
+  }),
+  scala: define({
+    ...C_LIKE,
+    keywords: words(`
+      abstract case catch class def do else extends final finally for forSome if
+      implicit import lazy match new null object override package private
+      protected return sealed super this throw trait try type val var while with
+      yield
+    `),
+    types: words('Int Long Double Float Boolean Char String Unit Any Nothing List Map Set Option'),
+    constants: words('true false null'),
+    builtins: words('println print'),
+  }),
+  dart: define({
+    ...C_LIKE,
+    keywords: words(`
+      abstract as assert async await break case catch class const continue
+      covariant default deferred do else enum export extends extension external
+      factory false final finally for function get hide if implements import in
+      interface is late library mixin new null on operator part required rethrow
+      return set show static super switch sync this throw true try typedef var
+      void while with yield
+    `),
+    types: words('int double bool String num dynamic void List Map Set Future Stream'),
+    constants: words('true false null'),
+    builtins: words('print'),
+  }),
+  perl: define({
+    hash: true,
+    quotes: ['"', "'"],
+    keywords: words(`
+      if else elsif unless while until for foreach do sub my our local return
+      last next redo package use require begin end and or not
+    `),
+    constants: words('undef'),
+    builtins: words('print say printf shift pop push join split length chomp'),
+  }),
+  r: define({
+    hash: true,
+    quotes: ['"', "'"],
+    keywords: words('if else repeat while function for in next break TRUE FALSE NULL Inf NaN NA'),
+    constants: words('TRUE FALSE NULL NA Inf NaN'),
+    builtins: words('c print length sum mean library require'),
+  }),
+  elixir: define({
+    hash: true,
+    quotes: ['"', "'"],
+    keywords: words(`
+      def defp defmodule defstruct defprotocol defimpl do end if else unless
+      cond case when fn import alias use require raise try catch rescue after
+      for with
+    `),
+    constants: words('true false nil'),
+    builtins: words('IO puts inspect'),
+  }),
+  haskell: define({
+    line: ['--'],
+    block: [['{-', '-}']],
+    quotes: ['"'],
+    charLiterals: true,
+    keywords: words(`
+      case class data default deriving do else if import in infix infixl infixr
+      instance let module newtype of then type where forall foreign
+    `),
+    types: words('Int Integer Double Float Bool Char String Maybe Either IO'),
+    constants: words('True False Nothing Just'),
+  }),
+  zig: define({
+    line: ['//'],
+    quotes: ['"'],
+    charLiterals: true,
+    keywords: words(`
+      addrspace align and anyframe anytype asm async await break catch comptime
+      const continue defer else enum errdefer error export extern fn for if
+      inline noalias nosuspend orelse orpacked pub resume return linksection
+      struct suspend switch test threadlocal try union unreachable usingnamespace
+      var volatile while
+    `),
+    types: words('i8 i16 i32 i64 u8 u16 u32 u64 isize usize f16 f32 f64 bool void type'),
+    constants: words('true false null undefined'),
+    builtins: words('std'),
+  }),
+  css: define({ mode: 'css', block: [['/*', '*/']], quotes: ['"', "'"] }),
+  html: define({ mode: 'html', quotes: ['"', "'"] }),
+  json: define({ mode: 'json', quotes: ['"'] }),
+  yaml: define({
+    hash: true,
+    quotes: ['"', "'"],
+    constants: words('true false yes no on off null'),
+    keywords: words(''),
+  }),
+  toml: define({
+    hash: true,
+    quotes: ['"', "'"],
+    constants: words('true false'),
+  }),
+  docker: define({
+    hash: true,
+    ignoreCase: true,
+    quotes: ['"', "'"],
+    keywords: words(`
+      from run cmd entrypoint copy add env arg workdir expose volume user label
+      stopsignal healthcheck shell onbuild maintainer as
+    `),
+  }),
+  make: define({
+    hash: true,
+    quotes: ['"', "'"],
+    keywords: words('ifeq ifneq ifdef ifndef else endif include define endef export unexport override'),
+  }),
+  diff: define({ mode: 'diff', quotes: [] }),
+};
+
+function languageFromClass(className) {
+  const match = /(?:^|\s)language-([^\s]+)/i.exec(className || '');
+  if (!match) return 'generic';
+  return match[1].toLowerCase();
+}
+
+function resolveLanguage(name) {
+  const key = ALIASES[name] || name;
+  return LANGUAGES[key] || LANGUAGES.generic;
+}
+
+function escapeHtml(value) {
+  return value
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;');
+}
+
+function readString(source, start, quote, multiline) {
+  let i = start + 1;
+  while (i < source.length) {
+    if (source[i] === '\\') {
+      i += 2;
+      continue;
+    }
+    if (source[i] === quote) return i + 1;
+    if (!multiline && source[i] === '\n') break;
+    i += 1;
+  }
+  return i;
+}
+
+function readChar(source, i) {
+  if (source[i] !== "'") return null;
+  if (source[i + 1] === '\\' && source[i + 2] && source[i + 3] === "'") return i + 4;
+  if (source[i + 1] && source[i + 1] !== '\\' && source[i + 1] !== '\n' && source[i + 2] === "'") return i + 3;
+  return null;
+}
+
+function tryString(source, i, lang) {
+  let start = i;
+  if (lang.stringPrefixes) {
+    const prefix = source.slice(i).match(/^[rRuUbBfF]{1,2}(?=['"])/);
+    if (prefix) start = i + prefix[0].length;
+  }
+
+  const rest = source.slice(start);
+  if (lang.triple && (rest.startsWith('"""') || rest.startsWith("'''"))) {
+    const quote = rest.slice(0, 3);
+    const end = source.indexOf(quote, start + 3);
+    return end === -1 ? source.length : end + 3;
+  }
+  if (lang.backtick && rest[0] === '`') return readString(source, start, '`', true);
+  if (rest[0] === "'") {
+    if (lang.charLiterals) {
+      const end = readChar(source, start);
+      if (end) return end;
+      if (!lang.quotes.includes("'")) return null;
+    }
+    if (lang.quotes.includes("'")) return readString(source, start, "'", false);
+    return null;
+  }
+  if (rest[0] === '"' && lang.quotes.includes('"')) return readString(source, start, '"', false);
+  return null;
+}
+
+function tryPreprocessor(source, i, lang) {
+  if (!lang.preprocessor || source[i] !== '#') return null;
+  if (i > 0 && source[i - 1] !== '\n') return null;
+  const match = source.slice(i).match(/^#\s*[A-Za-z_]\w*/);
+  if (!match) return null;
+
+  const tokens = [{ type: 'keyword', value: match[0] }];
+  let j = i + match[0].length;
+  const spaces = source.slice(j).match(/^[^\S\n]*/);
+  if (spaces?.[0]) {
+    tokens.push({ type: 'space', value: spaces[0] });
+    j += spaces[0].length;
+  }
+  if (source[j] === '<' || source[j] === '"') {
+    const endChar = source[j] === '<' ? '>' : '"';
+    const end = source.indexOf(endChar, j + 1);
+    const stop = end === -1 ? j + 1 : end + 1;
+    tokens.push({ type: 'string', value: source.slice(j, stop) });
+    j = stop;
+  }
+  return { tokens, index: j };
+}
+
+function startsComment(source, i, lang) {
+  if (lang.hash && source[i] === '#' && (i === 0 || /[\s;(]/.test(source[i - 1]))) {
+    return { close: '\n', includeClose: false };
+  }
+  const rest = source.slice(i);
+  const line = lang.line.find((mark) => rest.startsWith(mark));
+  if (line) return { close: '\n', includeClose: false, open: line };
+  const block = lang.block.find(([open]) => rest.startsWith(open));
+  if (block) return { close: block[1], includeClose: true, open: block[0] };
+  return null;
+}
+
+function hasWord(set, word, ignoreCase) {
+  return set.has(word) || (ignoreCase && set.has(word.toLowerCase()));
+}
+
+function tokenizeCode(source, lang) {
+  const tokens = [];
+  let i = 0;
+  let expect = null;
+
+  while (i < source.length) {
+    const rest = source.slice(i);
+    const pre = tryPreprocessor(source, i, lang);
+    if (pre) {
+      tokens.push(...pre.tokens);
+      i = pre.index;
+      expect = null;
+      continue;
+    }
+
+    const stringEnd = tryString(source, i, lang);
+    if (stringEnd) {
+      tokens.push({ type: 'string', value: source.slice(i, stringEnd) });
+      i = stringEnd;
+      expect = null;
+      continue;
+    }
+
+    const comment = startsComment(source, i, lang);
+    if (comment) {
+      const from = i + (comment.open ? comment.open.length : 1);
+      const end = source.indexOf(comment.close, comment.close === '\n' ? i : from);
+      const stop = end === -1 ? source.length : end + (comment.includeClose ? comment.close.length : 0);
+      tokens.push({ type: 'comment', value: source.slice(i, stop) });
+      i = stop;
+      expect = null;
+      continue;
+    }
+
+    if (lang.flags && rest[0] === '-' && /[\w-]/.test(rest[1] || '')) {
+      const flag = rest.match(/^--?[\w-]+/);
+      if (flag) {
+        tokens.push({ type: 'builtin', value: flag[0] });
+        i += flag[0].length;
+        expect = null;
+        continue;
+      }
+    }
+
+    if (/\d/.test(source[i]) && (i === 0 || !/[\w$]/.test(source[i - 1]))) {
+      const number = rest.match(/^(?:0x[\da-fA-F]+|0b[01]+|\d+(?:\.\d+)?(?:e[+-]?\d+)?)[uUlLfFdD]*/);
+      if (number) {
+        tokens.push({ type: 'number', value: number[0] });
+        i += number[0].length;
+        continue;
+      }
+    }
+
+    if (/[A-Za-z_$]/.test(source[i])) {
+      const word = rest.match(/^[A-Za-z_$][\w$]*/)[0];
+      const after = source.slice(i + word.length);
+      let type = 'ident';
+      if (hasWord(lang.constants, word, lang.ignoreCase)) type = 'constant';
+      else if (hasWord(lang.keywords, word, lang.ignoreCase)) type = 'keyword';
+      else if (expect === 'function') type = 'function';
+      else if (expect === 'type') type = 'type';
+      else if (hasWord(lang.types, word, lang.ignoreCase)) type = 'type';
+      else if (hasWord(lang.builtins, word, lang.ignoreCase)) type = 'builtin';
+      else if (/^\s*\(/.test(after) || (lang.macros && after[0] === '!')) type = 'function';
+
+      tokens.push({ type, value: word });
+      i += word.length;
+      if (type === 'keyword' && hasWord(lang.nextFunction, word, lang.ignoreCase)) expect = 'function';
+      else if (type === 'keyword' && hasWord(lang.nextType, word, lang.ignoreCase)) expect = 'type';
+      else expect = null;
+      continue;
+    }
+
+    if (source[i] === '\n') {
+      tokens.push({ type: 'newline', value: '\n' });
+      i += 1;
+      expect = null;
+      continue;
+    }
+
+    if (/[^\S\n]/.test(source[i])) {
+      const spaces = rest.match(/^[^\S\n]+/)[0];
+      tokens.push({ type: 'space', value: spaces });
+      i += spaces.length;
+      continue;
+    }
+
+    tokens.push({ type: 'punct', value: source[i] });
+    i += 1;
+    expect = null;
+  }
+
+  return tokens;
+}
+
+function pushText(tokens, text) {
+  text.split('\n').forEach((part, index, parts) => {
+    if (part) tokens.push({ type: 'ident', value: part });
+    if (index < parts.length - 1) tokens.push({ type: 'newline', value: '\n' });
+  });
+}
+
+function tokenizeHtml(source) {
+  const tokens = [];
+  let i = 0;
+
+  while (i < source.length) {
+    if (source.startsWith('<!--', i)) {
+      const end = source.indexOf('-->', i + 4);
+      const stop = end === -1 ? source.length : end + 3;
+      tokens.push({ type: 'comment', value: source.slice(i, stop) });
+      i = stop;
+      continue;
+    }
+
+    if (source[i] === '<' && /[A-Za-z/!?]?/.test(source[i + 1] || '')) {
+      tokens.push({ type: 'punct', value: '<' });
+      i += 1;
+      if (source[i] === '/' || source[i] === '!') {
+        tokens.push({ type: 'punct', value: source[i] });
+        i += 1;
+      }
+      const name = source.slice(i).match(/^[A-Za-z][\w:-]*/);
+      if (name) {
+        tokens.push({ type: 'keyword', value: name[0] });
+        i += name[0].length;
+      }
+      while (i < source.length && source[i] !== '>') {
+        if (source[i] === '\n') {
+          tokens.push({ type: 'newline', value: '\n' });
+          i += 1;
+          continue;
+        }
+        if (/[^\S\n]/.test(source[i])) {
+          const spaces = source.slice(i).match(/^[^\S\n]+/)[0];
+          tokens.push({ type: 'space', value: spaces });
+          i += spaces.length;
+          continue;
+        }
+        if (source[i] === '"' || source[i] === "'") {
+          const end = readString(source, i, source[i], false);
+          tokens.push({ type: 'string', value: source.slice(i, end) });
+          i = end;
+          continue;
+        }
+        const attr = source.slice(i).match(/^[A-Za-z_:][\w:.-]*/);
+        if (attr) {
+          tokens.push({ type: 'builtin', value: attr[0] });
+          i += attr[0].length;
+          continue;
+        }
+        tokens.push({ type: 'punct', value: source[i] });
+        i += 1;
+      }
+      if (source[i] === '>') {
+        tokens.push({ type: 'punct', value: '>' });
+        i += 1;
+      }
+      continue;
+    }
+
+    const next = source.indexOf('<', i);
+    const stop = next === -1 ? source.length : next;
+    pushText(tokens, source.slice(i, stop));
+    i = stop;
+  }
+
+  return tokens;
+}
+
+function tokenizeCss(source) {
+  const tokens = [];
+  let i = 0;
+  const keywords = words('important from to inherit initial unset none auto block flex grid bold solid transparent');
+
+  while (i < source.length) {
+    const rest = source.slice(i);
+    if (rest.startsWith('/*')) {
+      const end = source.indexOf('*/', i + 2);
+      const stop = end === -1 ? source.length : end + 2;
+      tokens.push({ type: 'comment', value: source.slice(i, stop) });
+      i = stop;
+      continue;
+    }
+    if (rest[0] === '"' || rest[0] === "'") {
+      const end = readString(source, i, rest[0], false);
+      tokens.push({ type: 'string', value: source.slice(i, end) });
+      i = end;
+      continue;
+    }
+    const hex = rest.match(/^#[\da-fA-F]{3,8}\b/);
+    if (hex) {
+      tokens.push({ type: 'number', value: hex[0] });
+      i += hex[0].length;
+      continue;
+    }
+    const selector = rest.match(/^[#.][A-Za-z_-][\w-]*/);
+    if (selector) {
+      tokens.push({ type: 'function', value: selector[0] });
+      i += selector[0].length;
+      continue;
+    }
+    const at = rest.match(/^@[\w-]+/);
+    if (at) {
+      tokens.push({ type: 'keyword', value: at[0] });
+      i += at[0].length;
+      continue;
+    }
+    if (/\d/.test(rest[0]) || (rest[0] === '.' && /\d/.test(rest[1] || ''))) {
+      const number = rest.match(/^(?:\d*\.\d+|\d+)(?:e[+-]?\d+)?(?:px|em|rem|vh|vw|%|s|ms|deg|fr|ch|ex)?/i);
+      if (number) {
+        tokens.push({ type: 'number', value: number[0] });
+        i += number[0].length;
+        continue;
+      }
+    }
+    if (/[A-Za-z_-]/.test(rest[0])) {
+      const word = rest.match(/^[A-Za-z_-][\w-]*/)[0];
+      const after = source.slice(i + word.length);
+      let type = 'ident';
+      if (keywords.has(word)) type = 'keyword';
+      else if (/^\s*:/.test(after) && !/^\s*:\s*:/.test(after)) type = 'builtin';
+      else if (/^\s*[{,]/.test(after)) type = 'keyword';
+      tokens.push({ type, value: word });
+      i += word.length;
+      continue;
+    }
+    if (source[i] === '\n') {
+      tokens.push({ type: 'newline', value: '\n' });
+      i += 1;
+      continue;
+    }
+    if (/[^\S\n]/.test(source[i])) {
+      const spaces = rest.match(/^[^\S\n]+/)[0];
+      tokens.push({ type: 'space', value: spaces });
+      i += spaces.length;
+      continue;
+    }
+    tokens.push({ type: 'punct', value: source[i] });
+    i += 1;
+  }
+
+  return tokens;
+}
+
+function tokenizeJson(source) {
+  const tokens = tokenizeCode(source, define({
+    quotes: ['"'],
+    constants: words('true false null'),
+  }));
+
+  for (let index = 0; index < tokens.length; index += 1) {
+    if (tokens[index].type !== 'string') continue;
+    let next = index + 1;
+    while (tokens[next] && (tokens[next].type === 'space' || tokens[next].type === 'newline')) next += 1;
+    if (tokens[next]?.type === 'punct' && tokens[next].value === ':') tokens[index].type = 'builtin';
+  }
+
+  return tokens;
+}
+
+function tokenizeDiff(source) {
+  const lines = source.split('\n');
+  const tokens = [];
+  lines.forEach((line, index) => {
+    let type = 'ident';
+    if (line.startsWith('+++') || line.startsWith('---') || line.startsWith('diff ') || line.startsWith('index ')) type = 'builtin';
+    else if (line.startsWith('@@')) type = 'keyword';
+    else if (line.startsWith('+')) type = 'addition';
+    else if (line.startsWith('-')) type = 'deletion';
+    if (line) tokens.push({ type, value: line });
+    if (index < lines.length - 1) tokens.push({ type: 'newline', value: '\n' });
+  });
+  return tokens;
+}
+
+function tokenize(source, lang) {
+  if (lang.mode === 'plain') return [{ type: 'ident', value: source }];
+  if (lang.mode === 'html') return tokenizeHtml(source);
+  if (lang.mode === 'css') return tokenizeCss(source);
+  if (lang.mode === 'json') return tokenizeJson(source);
+  if (lang.mode === 'diff') return tokenizeDiff(source);
+  return tokenizeCode(source, lang);
+}
+
+const PLAIN = new Set(['space', 'punct', 'ident', 'newline']);
+
+function renderHighlighted(source, language) {
+  const lines = [[]];
+  for (const token of tokenize(source, resolveLanguage(language))) {
+    if (token.type === 'newline') {
+      lines.push([]);
+      continue;
+    }
+    lines[lines.length - 1].push(token);
+  }
+
+  return lines.map((line) => line.map((token) => {
+    if (PLAIN.has(token.type)) return escapeHtml(token.value);
+    return `<span class="tok tok-${token.type}">${escapeHtml(token.value)}</span>`;
+  }).join('')).join('\n');
+}
+
+function copyWithTextarea(text) {
+  const area = document.createElement('textarea');
+  area.value = text;
+  area.setAttribute('readonly', '');
+  area.style.position = 'fixed';
+  area.style.left = '-9999px';
+  document.body.append(area);
+  area.select();
+  const copied = document.execCommand('copy');
+  area.remove();
+  return copied;
+}
+
+async function copyText(text) {
+  if (navigator.clipboard && window.isSecureContext) {
+    try {
+      await navigator.clipboard.writeText(text);
+      return;
+    } catch {
+      // Браузер может отклонить Clipboard API даже по клику.
+    }
+  }
+
+  if (!copyWithTextarea(text)) throw new Error('copy failed');
+}
+
+function setupCodeBlocks() {
+  document.querySelectorAll('.code-block').forEach((block) => {
+    const codes = [...block.querySelectorAll('code')];
+    const button = block.querySelector('.code-block__copy');
+    if (codes.length === 0) return;
+
+    const source = codes.map((code) => {
+      const text = code.textContent.replace(/\n$/, '');
+      code.innerHTML = renderHighlighted(text, languageFromClass(code.className));
+      return text;
+    }).join('\n');
+
+    if (!button) return;
+
+    const labelEl = button.querySelector('.code-block__copy-label');
+    const label = button.dataset.label || labelEl.textContent;
+    const done = button.dataset.done || 'Copied';
+    let timer = 0;
+
+    button.addEventListener('click', async () => {
+      window.clearTimeout(timer);
+      try {
+        await copyText(source);
+        labelEl.textContent = done;
+        button.classList.add('is-copied');
+        button.setAttribute('aria-label', 'Copied');
+      } catch {
+        labelEl.textContent = 'Error';
+        button.classList.remove('is-copied');
+      }
+      timer = window.setTimeout(() => {
+        labelEl.textContent = label;
+        button.classList.remove('is-copied');
+        button.setAttribute('aria-label', 'Copy code');
+      }, 2000);
+    });
+  });
+}
+
+setupCodeBlocks();
+</script>
+  </body>
+</html>

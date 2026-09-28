@@ -170,7 +170,7 @@ body {
 .article-body h4,
 .article-body h5,
 .article-body h6 {
-  margin: 16px 0 12px;
+  margin: 20px 0 12px;
   color: var(--fg);
   line-height: 1.25;
 }

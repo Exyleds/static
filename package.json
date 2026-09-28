@@ -1,6 +1,6 @@
 {
   "name": "@zoused/static",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A CLI tool to generate static articles from a markdown file",
   "main": "index.js",
   "bin": {
@@ -14,7 +14,6 @@
   "license": "ISC",
   "type": "module",
   "dependencies": {
-    "@zoused/static": "^1.0.1",
     "chalk": "^6.0.1",
     "commander": "^15.0.0",
     "fs-extra": "^11.4.1",

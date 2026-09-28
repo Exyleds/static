@@ -141,9 +141,11 @@ export async function buildSite({
   }
 
   const css = preparedCss ?? await getThemeCss(theme);
+  const jsPath = path.join(assetsDir, 'index.js');
+  const js = await fs.readFile(jsPath, 'utf8');
   await fs.ensureDir(outputDir);
-  await fs.copy(path.join(assetsDir, 'index.js'), path.join(outputDir, 'index.js'));
   if (multiFile) {
+    await fs.copy(jsPath, path.join(outputDir, 'index.js'));
     await fs.writeFile(path.join(outputDir, 'style.css'), css);
   }
 
@@ -191,6 +193,7 @@ export async function buildSite({
       body: page.html,
       currentRel: page.outRel,
       css,
+      js,
       multiFile,
       date: showDate ? page.date : null,
       save: showSave ? { source: page.source } : null,
@@ -224,6 +227,7 @@ export async function buildSite({
       body: await renderIndexBody(articles, { showDate }),
       currentRel: 'index.html',
       css,
+      js,
       multiFile,
       date: null,
       save: null,

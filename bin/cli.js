@@ -33,7 +33,7 @@ program
   .option('-o, --output <dir>', 'Output directory', 'dist')
   .option('--clean', 'Сlean output directory before building')
   .option('--theme <theme>', 'Theme name', 'dark')
-  .option('--multi-file', 'Generates a separate file for styles')
+  .option('--multi-file', 'Write CSS and JS as separate files')
   .option('--show-date', 'Show date')
   .option('--show-save', 'Add a button to copy Markdown')
   .option('--hide-watermark', 'Hide watermark')

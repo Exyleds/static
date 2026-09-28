@@ -31,10 +31,10 @@ npx @zoused/static@1.0.0 build -i content -o dist
 | `-o, --output <dir>` | `dist` | Папка результата |
 | `--clean` | выкл. | Очистить папку результата перед сборкой |
 | `--theme <theme>` | `dark` | Тема: `dark` или `light` |
-| `--multi-file` | выкл. | Вынести стили в `style.css`. Без флага CSS вставляется в страницу |
-| `--show-date` | выкл. | Показать дату рядом с названием |
-| `--show-save` | выкл. | Кнопка справа от названия: копирует исходный Markdown |
-| `--hide-watermark` | выкл. | Убрать подпись внизу страницы |
+| `--multi-file` | выкл. | Вынести стили в `style.css`, скрипт в `index.js` |
+| `--show-date` | выкл. | Показать дату публикации |
+| `--show-save` | выкл. | Кнопка копировать исходный Markdown |
+| `--hide-watermark` | выкл. | Убрать водяной знак |
 
 Пример:
 
@@ -63,3 +63,13 @@ static serve -d dist -p 3000
 - `light` — тёплая бумажная страница.
 
 Цвета темы лежат в `src/themes/dark.css` и `src/themes/light.css`. Общая вёрстка — в `src/themes/_base.css`.
+
+## Оформление
+### Статья
+![Статья](https://i.postimg.cc/3xsqqN42/Snimok-ekrana-2026-09-28-v-23-16-27.png)
+
+### Блок кода
+![Блок кода](https://i.postimg.cc/HkyZbmZ7/Snimok-ekrana-2026-09-28-v-23-17-49.png)
+
+### Таблица
+![Таблица](https://i.postimg.cc/LsSTf1gW/Snimok-ekrana-2026-09-28-v-23-19-03.png)

@@ -2,6 +2,7 @@
 
 Генерирует сайт по Markdow в виде статьи
 
+
 [@zoused/static@1.0.0](https://www.npmjs.com/package/@zoused/static).
 
 ## Установка
@@ -56,6 +57,10 @@ static serve -d dist -p 3000
 | --- | --- | --- |
 | `-d, --dir <dir>` | `dist` | Какую папку раздавать |
 | `-p, --port <number>` | `3000` | Порт |
+| `-i, --input <path>` | `content` | Что пересобирать, пока включён `--reload` |
+| `--reload` | вкл. | Пересобрать сайт при изменении исходников. `--no-reload` выключает слежение |
+
+Флаги `--theme`, `--multi-file`, `--show-date`, `--show-save` и `--hide-watermark` работают так же, как у `build`, и применяются при пересборке.
 
 ## Темы
 

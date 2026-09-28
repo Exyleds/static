@@ -130,6 +130,17 @@ export function intro() {
   return beginIntro().done;
 }
 
+export function interrupt() {
+  const active = mode === 'spin' || mode === 'live';
+  if (timer) {
+    clearInterval(timer);
+    timer = null;
+  }
+  mode = null;
+  if (tty && active) process.stdout.write('\r\x1b[K');
+  showCursor();
+}
+
 export function spin(label = text || 'Сборка…') {
   stopMotion();
   text = label;
